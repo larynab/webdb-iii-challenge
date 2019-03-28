@@ -37,7 +37,7 @@ server.post('/api/cohorts', async (req, res) => {
   //GET
 // list all roles
 server.get('/api/cohorts', async (req, res) => {
-  // get the roles from the database
+
   try {
     const cohorts = await db('cohorts'); // all the records from the table
     res.status(200).json(cohorts);
@@ -46,7 +46,23 @@ server.get('/api/cohorts', async (req, res) => {
   }
 });
 
+//--------------------------------------------------------------
+//STUDENTS
+//GET
+server.get('/api/students', async (req, res) => {
+
+    try {
+      const students = await db('students'); // all the records from the table
+      res.status(200).json(students);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  });
+
+  //----------------------------------------------------------------------
+//SERVER PORT
 const port = process.env.PORT || 5000;
 server.listen(port, () =>
   console.log(`\n** API running on http://localhost:${port} **\n`)
 );
+
