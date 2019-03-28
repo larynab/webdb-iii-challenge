@@ -17,21 +17,24 @@ const server = express();
 server.use(helmet());
 server.use(express.json());
 
+//POST
 // create roles
 server.post('/api/cohorts', async (req, res) => {
     try {
       const [id] = await db('cohorts').insert(req.body);
   
-      const role = await db('cohorts')
+      const cohort = await db('cohorts')
         .where({ id: id })
         .first();
   
-      res.status(201).json(role);
+      res.status(201).json(cohort);
     } catch (error) {
       const message = errors[error.errno] || 'We ran into an error';
       res.status(500).json({ message, error });
     }
   });
+
+  //GET
 // list all roles
 server.get('/api/cohorts', async (req, res) => {
   // get the roles from the database

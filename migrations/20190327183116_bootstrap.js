@@ -1,14 +1,13 @@
-
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('cohorts', function(tbl){
+  return knex.schema.createTable("cohorts", function(tbl) {
     tbl.increments();
 
     tbl
-        .string('name', 128)
-        .notNullable()
-        .unique();
+      .string("name", 128)
+      .notNullable()
+      .unique();
   });
 };
 exports.down = function(knex) {
-    return knex.schema.dropTableIfExists('cohorts');
-  };
+  return knex.schema.dropTableIfExists("cohorts");
+};
